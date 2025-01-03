@@ -1,0 +1,17 @@
+{
+  "settings": {
+    "ai_behavior": {
+      "pre_action_check": "PROMPT.md",
+      "documentation_required": true,
+      "strict_mode": true
+    },
+    "context_tracking": {
+      "enabled": true,
+      "initialization": {
+        "required_files": ["PROMPT.md", "CHANGELOG.md", "PROJECT_SCOPE.md"],
+        "order": ["PROMPT.md", "CHANGELOG.md", "PROJECT_SCOPE.md"]
+      },
+      "files": ["PROMPT.md", "CHANGELOG.md", "PROJECT_SCOPE.md"]
+    }
+  }
+} 
