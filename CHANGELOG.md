@@ -1,9 +1,9 @@
-## Project: {{project_name}}
+## Project: create-cursor-app
 
 ### AI Assistant Check-in Protocol
 1. At the start of each conversation, execute:
 ```
-You are working on {{project_name}}
+You are working on create-cursor-app
 Read CHANGELOG.md and PROJECT_SCOPE.md now, report your findings, and follow all instructions.
 Begin check-in process and document analysis.
 ```

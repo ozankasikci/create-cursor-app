@@ -1,9 +1,9 @@
-# {{project_name}} - Project Scope
+# create-cursor-app - Project Scope
 
 ## Project Initialization Protocol
 To maintain context across conversations, start with:
 ```
-You are working on {{project_name}}
+You are working on create-cursor-app
 Read CHANGELOG.md and PROJECT_SCOPE.md now, report your findings, and follow all instructions.
 Begin check-in process and document analysis.
 ```
