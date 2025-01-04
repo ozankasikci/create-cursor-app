@@ -1,6 +1,7 @@
 use std::path::PathBuf;
 use std::fs;
 use std::io::{Read, Write};
+use inquire::{Confirm, InquireError};
 use crate::lib::templates::Template;
 
 pub struct TemplateProcessor {
@@ -18,8 +19,10 @@ impl TemplateProcessor {
         // Validate template structure first
         self.validate_template_structure().await?;
 
-        // Create destination directory
-        fs::create_dir_all(&self.dest)?;
+        // Create destination directory if it doesn't exist
+        if !self.dest.exists() {
+            fs::create_dir_all(&self.dest)?;
+        }
 
         // Copy and process template files
         self.copy_template_files().await?;
@@ -28,14 +31,14 @@ impl TemplateProcessor {
         Ok(())
     }
 
-    async fn copy_template_files(&self) -> Result<(), std::io::Error> {
+    async fn copy_template_files(&self) -> Result<(), Box<dyn std::error::Error>> {
         if self.template.path.exists() {
             self.copy_dir_all(&self.template.path, &self.dest)?;
         }
         Ok(())
     }
 
-    fn copy_dir_all(&self, src: &PathBuf, dst: &PathBuf) -> Result<(), std::io::Error> {
+    fn copy_dir_all(&self, src: &PathBuf, dst: &PathBuf) -> Result<(), Box<dyn std::error::Error>> {
         fs::create_dir_all(&dst)?;
         for entry in fs::read_dir(src)? {
             let entry = entry?;
@@ -45,13 +48,30 @@ impl TemplateProcessor {
             if ty.is_dir() {
                 self.copy_dir_all(&entry.path(), &dst_path)?;
             } else {
+                if dst_path.exists() {
+                    let proceed = if std::env::var("TEST_MODE").is_ok() {
+                        true // Skip confirmation in test mode
+                    } else {
+                        Confirm::new(&format!(
+                            "File '{}' already exists. Overwrite?",
+                            dst_path.display()
+                        ))
+                        .with_default(false)
+                        .prompt()?
+                    };
+
+                    if !proceed {
+                        println!("Skipping file: {}", dst_path.display());
+                        continue;
+                    }
+                }
                 self.copy_and_process_file(&entry.path(), &dst_path)?;
             }
         }
         Ok(())
     }
 
-    fn copy_and_process_file(&self, src: &PathBuf, dst: &PathBuf) -> Result<(), std::io::Error> {
+    fn copy_and_process_file(&self, src: &PathBuf, dst: &PathBuf) -> Result<(), Box<dyn std::error::Error>> {
         let mut content = String::new();
         fs::File::open(src)?.read_to_string(&mut content)?;
 

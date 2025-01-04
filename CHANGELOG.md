@@ -39,6 +39,21 @@ Analyzed [item]: [key findings relevant to task]
 
 ### [Unreleased]
 [Latest changes documented here]
+- Added file overwrite confirmation for existing directories
+  - Checks if destination directory contains files
+  - Prompts user for confirmation before overwriting
+  - Skips confirmation in test mode
+  - Added test coverage for overwrite scenario
+- Added per-file overwrite confirmation
+  - Prompts for each existing file individually
+  - Allows skipping specific files
+  - Preserves unrelated files in target directory
+  - Added test coverage for per-file overwrite scenarios
+  - Maintains non-conflicting files in destination
+- Fixed error handling in file overwrite confirmation
+  - Changed error types to properly handle InquireError
+  - Improved error propagation in template processing
+  - Maintained consistent error handling across all IO operations
 
 ---
 ```
