@@ -54,6 +54,11 @@ Analyzed [item]: [key findings relevant to task]
   - Changed error types to properly handle InquireError
   - Improved error propagation in template processing
   - Maintained consistent error handling across all IO operations
+- Added GitHub Actions release workflow
+  - Automated version bumping
+  - Automated release creation
+  - Automated crates.io publishing
+  - Added release documentation
 
 ---
 ```
