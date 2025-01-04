@@ -36,12 +36,16 @@ pub async fn run() -> Result<(), Box<dyn std::error::Error>> {
 
     let directory = matches.value_of("directory").unwrap();
 
-    // Always prompt for project name
-    let project_name = Text::new("What's your project name?")
-        .with_help_message("The name will be used in template files")
-        .with_validator(required!("Project name is required"))
-        .with_placeholder("my-awesome-project")
-        .prompt()?;
+    // In test mode, use a default project name
+    let project_name = if std::env::var("TEST_MODE").is_ok() {
+        "Test Project".to_string()
+    } else {
+        Text::new("What's your project name?")
+            .with_help_message("The name will be used in template files")
+            .with_validator(required!("Project name is required"))
+            .with_placeholder("my-awesome-project")
+            .prompt()?
+    };
 
     let config = CliConfig {
         template: matches.value_of("template").unwrap().to_string(),

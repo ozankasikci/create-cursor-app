@@ -5,7 +5,7 @@ use crate::lib::templates::Template;
 
 pub struct TemplateProcessor {
     template: Template,
-    dest: PathBuf,
+    pub(crate) dest: PathBuf,
     project_name: String,
 }
 
@@ -15,6 +15,9 @@ impl TemplateProcessor {
     }
 
     pub async fn process(&self) -> Result<(), Box<dyn std::error::Error>> {
+        // Validate template structure first
+        self.validate_template_structure().await?;
+
         // Create destination directory
         fs::create_dir_all(&self.dest)?;
 
@@ -58,5 +61,26 @@ impl TemplateProcessor {
         let mut dst_file = fs::File::create(dst)?;
         dst_file.write_all(processed_content.as_bytes())?;
         Ok(())
+    }
+
+    pub async fn validate_template_structure(&self) -> Result<(), Box<dyn std::error::Error>> {
+        let required_files = vec![
+            "PROMPT.md",
+            "CHANGELOG.md",
+            "PROJECT_SCOPE.md",
+            ".cursorrules"
+        ];
+
+        for file in required_files {
+            if !self.template.path.join(file).exists() {
+                return Err(format!("Required file {} is missing from template", file).into());
+            }
+        }
+
+        Ok(())
+    }
+
+    pub fn get_output_path(&self, filename: &str) -> PathBuf {
+        self.dest.join(filename)
     }
 } 

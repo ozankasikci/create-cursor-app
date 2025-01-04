@@ -24,10 +24,13 @@ impl Template {
     }
 
     pub fn load_all() -> Vec<Template> {
-        let templates_dir = PathBuf::from("templates");
+        Self::load_from_dir(&PathBuf::from("templates"))
+    }
+
+    pub fn load_from_dir(templates_dir: &PathBuf) -> Vec<Template> {
         let mut templates = Vec::new();
 
-        if let Ok(entries) = fs::read_dir(&templates_dir) {
+        if let Ok(entries) = fs::read_dir(templates_dir) {
             for entry in entries.flatten() {
                 if entry.path().is_dir() {
                     if let Some(name) = entry.path().file_name().and_then(|n| n.to_str()) {
@@ -43,4 +46,5 @@ impl Template {
 
         templates
     }
-} 
+}
+

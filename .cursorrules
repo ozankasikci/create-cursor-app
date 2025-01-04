@@ -3,15 +3,20 @@
     "ai_behavior": {
       "pre_action_check": "PROMPT.md",
       "documentation_required": true,
-      "strict_mode": true
+      "strict_mode": true,
+      "protocol_enforcement": {
+        "enabled": true,
+        "required_files": ["CHANGELOG.md", "PROJECT_SCOPE.md"],
+        "check_order": ["PROMPT.md", "CHANGELOG.md", "PROJECT_SCOPE.md"]
+      }
     },
-    "context_tracking": {
-      "enabled": true,
-      "initialization": {
-        "required_files": ["PROMPT.md", "CHANGELOG.md", "PROJECT_SCOPE.md"],
-        "order": ["PROMPT.md", "CHANGELOG.md", "PROJECT_SCOPE.md"]
+    "documentation": {
+      "auto_update": true,
+      "required_sections": {
+        "CHANGELOG.md": ["[Unreleased]"],
+        "PROJECT_SCOPE.md": ["Project Structure", "Technical Architecture"]
       },
-      "files": ["PROMPT.md", "CHANGELOG.md", "PROJECT_SCOPE.md"]
+      "update_verification": true
     }
   }
 } 
