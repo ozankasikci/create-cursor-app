@@ -46,10 +46,15 @@ Begin check-in process and document analysis.
 3. [Add more as needed]
 
 ### Technical Architecture
-- **Integrations**: [List]
-- **Core Functions**: [List]
-- **UI Features**: [List]
-- **User Features**: [List]
+- **Language**: Node.js
+- **Module System**: CommonJS
+- **Core Functions**: 
+  - Template management
+  - File processing
+  - CLI interface
+- **Dependencies**:
+  - fs/promises for async file operations
+  - path for cross-platform path handling
 
 ### Data Structures
 [List data structures here]
