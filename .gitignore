@@ -51,6 +51,12 @@ out/
 .vuepress/dist
 .serverless/
 
+# System directories
+/var/
+/tmp/
+.tmp/
+/temp/
+
 # Local development
 .env.development.local
 .env.test.local

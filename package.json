@@ -7,7 +7,7 @@
     "create-cursor-app": "bin/create-cursor-app.js"
   },
   "scripts": {
-    "test": "mocha test/**/*.test.js",
+    "test": "mocha --timeout 5000 tests/**/*.test.js",
     "prepare": "chmod +x bin/create-cursor-app.js"
   },
   "dependencies": {
