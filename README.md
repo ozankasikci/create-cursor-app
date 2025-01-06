@@ -12,7 +12,7 @@
 </p>
 
 Create Cursor App works on macOS, Windows, and Linux.<br>
-If something doesn't work, please [file an issue](https://github.com/yourusername/create-cursor-app/issues/new).
+If something doesn't work, please [file an issue](https://github.com/ozankasikci/create-cursor-app/issues/new).
 
 ## Quick Overview
 
@@ -63,10 +63,6 @@ The following templates are available:
 - `basic` - A basic template with essential Cursor IDE configuration
 - More templates coming soon...
 
-## Contributing
-
-We'd love to have your helping hand on `create-cursor-app`! See [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
-
 ## License
 
-Create Cursor App is open source software [licensed as MIT](https://github.com/yourusername/create-cursor-app/blob/main/LICENSE). 
+Create Cursor App is open source software [licensed as MIT](https://github.com/ozankasikci/create-cursor-app/blob/main/LICENSE). 

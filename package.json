@@ -1,11 +1,12 @@
 {
   "name": "create-cursor-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Create Cursor IDE projects with predefined templates",
   "main": "src/lib/index.js",
   "bin": {
     "create-cursor-app": "bin/create-cursor-app.js"
   },
+  "type": "module",
   "scripts": {
     "test": "mocha --timeout 5000 tests/**/*.test.js",
     "prepare": "chmod +x bin/create-cursor-app.js"
@@ -24,6 +25,26 @@
     "src/",
     "templates/"
   ],
+  "keywords": [
+    "cursor",
+    "create-cursor-app",
+    "template",
+    "ai",
+    "documentation"
+  ],
+  "author": "Ozan Kaşıkçı",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ozankasikci/create-cursor-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ozankasikci/create-cursor-app/issues"
+  },
+  "homepage": "https://github.com/ozankasikci/create-cursor-app#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=14"
   }
